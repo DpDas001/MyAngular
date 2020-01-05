@@ -38,9 +38,10 @@ export class AppComponent {
 
   constructor(private http: HttpClient) { }
     ngOnInit() {
+      console.log("ngOnInit called");
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-         this.http.get("http://localhost:9080/employee",{headers}).subscribe(res=>
+         this.http.get("https://jsonplaceholder.typicode.com/posts",{headers}).subscribe(res=>
          {
           console.log(res);
           this.students = res;
@@ -48,5 +49,14 @@ export class AppComponent {
          );
       }
 
+    ngAfterViewInit(){
+      console.log("ngAfterViewInit called");
+    }
+    ngOnChanges(){
+      console.log("ngOnChanges called");
+    }
+    ngDestroy(){
+      console.log("ngOnChanges called");
+    }
 
 }

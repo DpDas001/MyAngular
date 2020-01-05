@@ -6,30 +6,32 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { ChangeTextDirective } from './change-text.directive';
 import { SqrtPipe } from './app.sqrt';
-import { RouterModule} from '@angular/router';
+import { Routes,RouterModule} from '@angular/router';
 import {HttpClientModule } from '@angular/common/http'
 import { MyutilserviceService } from './myutilservice.service';
-import { HeaderComponent } from './header/header.component'
-
+import { HeaderComponent } from './header/header.component';
+import { RentalComponent } from './rental/rental.component';
+import { TextComponent } from './text/text.component';
+import { RentalModule } from './rental/rental.module'
+const routes: Routes = [
+  { path:'',redirectTo: '/rentals', pathMatch: 'full'},
+  { path:'text',component: TextComponent},
+]
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HeroesComponent,
     ChangeTextDirective,
-    SqrtPipe
+    SqrtPipe,
+    TextComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-
-    RouterModule.forRoot([
-             {
-                path: 'new-cmp',
-                component: HeroesComponent
-             }
-          ])
+    RentalModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [MyutilserviceService],
   bootstrap: [AppComponent]
